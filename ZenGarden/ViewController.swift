@@ -40,6 +40,7 @@ class ViewController: UIViewController {
 			let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(handlePan))
 			zenImageView.addGestureRecognizer(panGesture)
 		}
+		
 	}
 	
 	func handlePan(recognizer: UIPanGestureRecognizer) {
@@ -114,6 +115,25 @@ class ViewController: UIViewController {
 	
 	func randomizeGardenObjects() {
 		// change the garden object's constraint constants to be some random values within the bounds of the screen
+		
+		let width = CGRectGetWidth(view.frame) - rakeImageView.frame.width
+		let height = CGRectGetHeight(view.frame) - rakeImageView.frame.height
+		
+		rakeTopConstraint.constant = randomCGFloat(height)
+		rakeLeftConstraint.constant = randomCGFloat(width)
+		
+		rockTopConstraint.constant = randomCGFloat(height)
+		rockRightConstraint.constant = randomCGFloat(width)
+		
+		shrubLeftConstraint.constant = randomCGFloat(width)
+		shrubBottomConstraint.constant = randomCGFloat(height)
+		
+		swordRightConstraint.constant = randomCGFloat(width)
+		swordBottomConstraint.constant = randomCGFloat(height)
+	}
+	
+	func randomCGFloat(max: CGFloat) -> CGFloat {
+		return CGFloat(arc4random_uniform(UInt32(max)));
 	}
 	
 }
